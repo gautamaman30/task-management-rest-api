@@ -3,7 +3,7 @@ export default function makeCallBack(controller){
     const httpRequest = {
       body: req.body,
       params: req.params,
-      query: req.params,
+      query: req.query,
       method: req.method,
       path: req.path,
       headers: {

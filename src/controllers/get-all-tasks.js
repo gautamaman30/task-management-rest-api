@@ -1,8 +1,11 @@
 export default function makeGetAllTasks( {listAllTasks} ){
   return async function( httpRequest ){
     try{
-
-      const tasks = await listAllTasks();
+      let limit = null;
+      if(httpRequest.query.limit && !Number.isNaN(parseInt(httpRequest.query.limit))){
+        limit = httpRequest.query.limit;
+      }
+      const tasks = await listAllTasks({limit});
 
       if(tasks.error) throw new Error(tasks.error);
 
